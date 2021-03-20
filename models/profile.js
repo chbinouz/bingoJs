@@ -16,7 +16,7 @@ const experienceSchema = new schema({
   },
   location: {
     Type: String,
-  },
+  }
 });
 
 const educationSchema = new schema({

@@ -7,7 +7,8 @@ const profileRouter = express.Router();
 
 profileRouter.use(bodyParser.json());
 
-profileRouter.route("/").get((req, res, next) => {
+profileRouter.route("/")
+.get((req, res, next) => {
   Profiles.find({}).then(
     (profile) => {
       if (profile.length != 0) {
