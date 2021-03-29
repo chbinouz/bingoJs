@@ -3,16 +3,16 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
-
+const mongoosastic = require("mongoose-elasticsearch-xp");
+const mongoose = require("mongoose");
+mongoose.plugin(mongoosastic);
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var scrapping = require("./routes/scrapping");
 var profileRouter = require("./routes/profileRouter");
 
-const mongoose = require("mongoose");
-
 const url = "mongodb://localhost:27017/Pi";
-const connect = mongoose.connect(url);
+const connect = mongoose.connect(url, { useFindAndModify: false });
 connect.then(
   (db) => {
     console.log("connected correctly to the server");

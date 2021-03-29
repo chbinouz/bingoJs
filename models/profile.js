@@ -16,7 +16,7 @@ const experienceSchema = new schema({
   },
   location: {
     Type: String,
-  }
+  },
 });
 
 const educationSchema = new schema({
@@ -57,7 +57,9 @@ const profileSchema = new schema({
   },
   experience: [experienceSchema],
   education: [educationSchema],
-  profile: [similarProfileSchema],
+  realTimeLocation: {
+    type: String,
+  },
 });
 
 var profiles = mongoose.model("link", profileSchema);
