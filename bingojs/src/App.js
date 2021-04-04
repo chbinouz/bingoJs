@@ -1,8 +1,8 @@
 import "./App.css";
-import { HrPage } from "./pages/HrPage";
+import { Sidebar } from "./components/Sidebar";
 
 function App() {
-  return <HrPage></HrPage>;
+  return <Sidebar></Sidebar>;
 }
 
 export default App;
