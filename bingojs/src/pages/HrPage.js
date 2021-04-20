@@ -1,15 +1,22 @@
 import { ResearchForm } from "../components/ResearchForm";
 import { Profiles } from "./Profiles";
 import $ from "jquery";
-export default function HrPage() {
+import { useState } from "react";
+import { Infinite } from "../components/Infinite";
+import styled from "styled-components";
+export default function HrPage(props) {
+  const [search, setSearch] = useState([]);
+  const getProfiles = (url) => {
+    setSearch(url);
+  };
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
-          <button
+          <Btn
             type="button"
             id="sidebarCollapse"
-            className="btn btn-info buttonToggle"
+            className="btn btn-info "
             onClick={() => {
               $("#sidebar, #content").toggleClass("active");
               $(".collapse.in").toggleClass("in");
@@ -18,7 +25,7 @@ export default function HrPage() {
           >
             <i className="fas fa-align-left"></i>
             <span>Toggle Sidebar</span>
-          </button>
+          </Btn>
           <button
             className="btn btn-dark d-inline-block d-lg-none ml-auto"
             type="button"
@@ -36,12 +43,19 @@ export default function HrPage() {
             id="navbarSupportedContent"
           >
             <div className="search">
-              <ResearchForm></ResearchForm>
+              <ResearchForm getProfiles={getProfiles}></ResearchForm>
             </div>
           </div>
         </div>
       </nav>
-      <Profiles></Profiles>
+      <Profiles profiles={search}></Profiles>
     </>
   );
 }
+
+const Btn = styled.button`
+  margin-top: -300px;
+  @media (max-width: 990px) {
+    margin-top: 0;
+  }
+`;

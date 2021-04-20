@@ -29,9 +29,9 @@ export const Sidebar = () => {
           </div>
 
           <ul className="list-unstyled components">
-            <p>Mariem Hammami</p>
+            <p>HR agent</p>
             <li>
-              <Link to="/uploadCv">Upload CV</Link>
+              <Link to="/hr/uploadCv">Upload CV</Link>
             </li>
             <li>
               <Link to=".">Account</Link>
@@ -47,7 +47,7 @@ export const Sidebar = () => {
               </a>
               <ul className="collapse list-unstyled" id="homeSubmenu">
                 <li>
-                  <Link to="/profiles">Web dev</Link>
+                  <Link to="/hr/profiles">Web dev</Link>
                 </li>
                 <li>
                   <Link to="/profiles">mobile dev</Link>

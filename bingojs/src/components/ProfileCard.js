@@ -1,10 +1,23 @@
 import styled from "styled-components";
 import { Profile } from "./profile/Profile";
 import React, { useState } from "react";
+import axios from "axios";
 
 export const ProfileCard = (props) => {
-  // eslint-disable-next-line
+  const [change, setChange] = useState([]);
   const [profile, setProfile] = useState(props.profile);
+  const [loadData, setLoadData] = useState(true);
+
+  const fetchData = (id) => {
+    axios
+      .get("http://localhost:3001/profiles/ableToChange/" + id)
+      .then((res) => {
+        console.log(res.data);
+        setChange(res.data.able_for_change);
+        setLoadData(false);
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <>
       <Wrapper>
@@ -52,6 +65,10 @@ export const ProfileCard = (props) => {
                 className="btn btn-primary"
                 data-toggle="modal"
                 data-target={"#" + profile._id}
+                onClick={() => {
+                  fetchData(profile._id);
+                  console.log(change);
+                }}
               >
                 View profile
               </button>
@@ -64,6 +81,7 @@ export const ProfileCard = (props) => {
           </Ligne>
         </div>
       </Wrapper>
+
       <div
         className="modal fade"
         id={profile._id}
@@ -84,7 +102,11 @@ export const ProfileCard = (props) => {
               </button>
             </div>
             <div className="modal-body">
-              <Profile profile={profile}></Profile>
+              {!loadData ? (
+                <Profile profile={profile} change={change}></Profile>
+              ) : (
+                "loading"
+              )}
             </div>
             <div className="modal-footer">
               <button

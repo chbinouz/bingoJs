@@ -6,11 +6,8 @@ export const BrowsePofiles = () => {
   return (
     <Suspense fallback={<p>...Loading page please wait</p>}>
       <Switch>
-        <Route path="/profiles" render={() => <HrPage></HrPage>}></Route>
-        <Route
-          path="/uploadCv"
-          render={(props) => <UploadCv {...props}></UploadCv>}
-        ></Route>
+        <Route path="/hr/profiles" render={() => <HrPage></HrPage>}></Route>
+        <Route path="/hr/uploadCv" render={() => <UploadCv></UploadCv>}></Route>
         <Route exact render={() => <HrPage></HrPage>}></Route>
       </Switch>
     </Suspense>

@@ -1,6 +1,9 @@
+import { useState } from "react";
 import styled from "styled-components";
 
-export const Education = () => {
+export const Education = (props) => {
+  const [educ, setEduc] = useState(props.education);
+  console.log("props");
   return (
     <Wrapper>
       <Ligne className="row">
@@ -8,7 +11,7 @@ export const Education = () => {
           <h6>college name :</h6>
         </div>
         <div className="col-6">
-          <h6>ENSI - Ecole Nationale des Sciences de l'Informatique</h6>
+          <h6>{educ.college_name}</h6>
         </div>
       </Ligne>
       <Ligne className="row">
@@ -16,7 +19,7 @@ export const Education = () => {
           <h6>degree name :</h6>
         </div>
         <div className="col-6">
-          <h6>engeneer</h6>
+          <h6>{educ.degree_name}</h6>
         </div>
       </Ligne>
       <Ligne className="row">
@@ -24,7 +27,7 @@ export const Education = () => {
           <h6>stream :</h6>
         </div>
         <div className="col-6">
-          <h6>12</h6>
+          <h6>{educ.stream}</h6>
         </div>
       </Ligne>
       <Ligne className="row">
@@ -32,7 +35,7 @@ export const Education = () => {
           <h6>degree year :</h6>
         </div>
         <div className="col-6">
-          <h6>2010 – 2013</h6>
+          <h6>{educ.degree_year}</h6>
         </div>
       </Ligne>
     </Wrapper>

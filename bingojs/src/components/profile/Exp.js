@@ -2,8 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 
 export const Exp = (props) => {
-  // eslint-disable-next-line
-  const [exp, setExp] = useState(props);
+  const [exp, setExp] = useState(props.experience);
   return (
     <Wrapper>
       <Ligne className="row">

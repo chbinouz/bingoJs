@@ -1,24 +1,26 @@
-import { useState } from "react";
+import axios from "axios";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
-import { object } from "yup";
-import { Education } from "./Education";
+import { Educ } from "./Educ";
+import { Exp } from "./Exp";
 import { RecomendationCard } from "./RecomendationCard";
 export const Profile = (props) => {
-  // eslint-disable-next-line
-  var prf = new object();
-  prf = props.profile;
-  // eslint-disable-next-line
-  const [profile, setProfile] = useState(prf);
+  const [profile, setProfile] = useState(props.profile);
+  const [change, setChange] = useState(props.change);
+  console.log(change);
   return (
     <div className="container-fluid">
+      <h5>{change === "true" ? <h5>propably able to change</h5> : ""}</h5>
+
       <Image
         src={
-          profile.imgUrl
-            ? profile.imgUrl
-            : "https://www.shareicon.net/data/512x512/2015/09/24/106423_user_512x512.png"
+          !profile.imgUrl
+            ? "https://www.shareicon.net/data/512x512/2015/09/24/106423_user_512x512.png"
+            : profile.imgUrl
         }
         className="rounded mx-auto d-block"
-        alt="..."
+        alt={profile.name}
+        title={profile.name}
       ></Image>
       <Ligne className="row justify-content-center ">
         <div className="col-5">
@@ -51,49 +53,10 @@ export const Profile = (props) => {
       </Ligne>
       <Ligne className="row justify-content-center">
         <div className="col-12 col-md-9">
-          {profile.experience.map((exp) => (
-            <Wrapper>
-              <Ligne className="row">
-                <div className="col-6">
-                  <h6>job title :</h6>
-                </div>
-                <div className="col-6">
-                  <h6>{exp.job_title}</h6>
-                </div>
-              </Ligne>
-              <Ligne className="row">
-                <div className="col-6">
-                  <h6>company name :</h6>
-                </div>
-                <div className="col-6">
-                  <h6>{exp.company_name}</h6>
-                </div>
-              </Ligne>
-              <Ligne className="row">
-                <div className="col-6">
-                  <h6>joining date :</h6>
-                </div>
-                <div className="col-6">
-                  <h6>{exp.joining_date}</h6>
-                </div>
-              </Ligne>
-              <Ligne className="row">
-                <div className="col-6">
-                  <h6>exp :</h6>
-                </div>
-                <div className="col-6">
-                  <h6>{exp.exp}</h6>
-                </div>
-              </Ligne>
-              <Ligne className="row">
-                <div className="col-6">
-                  <h6>location :</h6>
-                </div>
-                <div className="col-6">
-                  <h6>{exp.location}</h6>
-                </div>
-              </Ligne>
-            </Wrapper>
+          {profile.experience?.map((exp, index) => (
+            <div key={index}>
+              <Exp experience={exp}></Exp>
+            </div>
           ))}
         </div>
       </Ligne>
@@ -104,54 +67,60 @@ export const Profile = (props) => {
       </Ligne>
       <Ligne className="row justify-content-center">
         <div className="col-12 col-md-9">
-          <Education></Education>
+          {profile.education?.map((edu, index) => (
+            <div key={index}>
+              <Educ edu={edu}></Educ>
+            </div>
+          ))}
         </div>
       </Ligne>
       <Ligne className="row justify-content-center ">
-        <div className="card text-center">
-          <div className="card-header">Similar profiles</div>
-          <div className="card-body">
-            <div className="row">
-              <div
-                id="carouselExampleControls"
-                className="carousel slide col-12"
-                data-ride="carousel"
-              >
-                <div className="carousel-inner">
-                  <div className="carousel-item active">
-                    <RecomendationCard></RecomendationCard>
+        <div className="col-12 col-md-9">
+          <div className="card text-center">
+            <div className="card-header">Similar profiles</div>
+            <div className="card-body">
+              <div className="row justify-content-center ">
+                <div
+                  id="carouselExampleControls"
+                  className="carousel slide"
+                  data-ride="carousel"
+                >
+                  <div className="carousel-inner">
+                    <div className="carousel-item active">
+                      <RecomendationCard></RecomendationCard>
+                    </div>
+                    <div className="carousel-item">
+                      <RecomendationCard></RecomendationCard>
+                    </div>
+                    <div className="carousel-item">
+                      <RecomendationCard></RecomendationCard>
+                    </div>
                   </div>
-                  <div className="carousel-item">
-                    <RecomendationCard></RecomendationCard>
-                  </div>
-                  <div className="carousel-item">
-                    <RecomendationCard></RecomendationCard>
-                  </div>
+                  <a
+                    className="carousel-control-prev"
+                    href="#carouselExampleControls"
+                    role="button"
+                    data-slide="prev"
+                  >
+                    <span
+                      className="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="sr-only">Previous</span>
+                  </a>
+                  <a
+                    className="carousel-control-next"
+                    href="#carouselExampleControls"
+                    role="button"
+                    data-slide="next"
+                  >
+                    <span
+                      className="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span className="sr-only">Next</span>
+                  </a>
                 </div>
-                <a
-                  className="carousel-control-prev"
-                  href="#carouselExampleControls"
-                  role="button"
-                  data-slide="prev"
-                >
-                  <span
-                    className="carousel-control-prev-icon"
-                    aria-hidden="true"
-                  />
-                  <span className="sr-only">Previous</span>
-                </a>
-                <a
-                  className="carousel-control-next"
-                  href="#carouselExampleControls"
-                  role="button"
-                  data-slide="next"
-                >
-                  <span
-                    className="carousel-control-next-icon"
-                    aria-hidden="true"
-                  />
-                  <span className="sr-only">Next</span>
-                </a>
               </div>
             </div>
           </div>

@@ -32,19 +32,14 @@ export const RecomendationCard = () => {
           <hr></hr>
           <Ligne className="row">
             <div className="col-6">
-              <button
-                type="button"
-                className="btn btn-primary"
-                data-toggle="modal"
-                data-target="#Modal"
-              >
-                View profile
-              </button>
+              <a href="." className="btn btn-info">
+                skip Profile
+              </a>
             </div>
             <div className="col-6">
-              <Button href="." className="btn btn-outline-primary">
+              <a href="." className="btn btn-outline-primary">
                 skip Profile
-              </Button>
+              </a>
             </div>
           </Ligne>
         </div>
@@ -59,16 +54,6 @@ const Wrapper = styled.div`
   min-width: 300px;
   margin: 10px;
   padding: 20px;
-`;
-
-const Button = styled.a`
-  border-color: #6d7fcc;
-  color: #6d7fcc;
-  &:hover {
-    background-color: #6d7fcc !important;
-    color: white;
-    border-color: #6d7fcc;
-  }
 `;
 
 const Ligne = styled.div`
