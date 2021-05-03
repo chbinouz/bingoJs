@@ -1,0 +1,15 @@
+.Modal {
+  width: 90%;
+  max-width: none !important;
+}
+.file {
+  margin-top: 25px;
+  width: 100%;
+}
+.classButton {
+  margin-top: 25px;
+  width: 100%;
+}
+.file-field {
+  width: 100%;
+}
